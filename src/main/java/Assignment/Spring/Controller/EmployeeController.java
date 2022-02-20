@@ -12,7 +12,7 @@ import java.util.List;
 public class EmployeeController {
 
     @Autowired
-    EmployeeRepository repo;
+    EmployeeRepository repository;
     @Autowired
     Employee e;
     @Autowired
@@ -21,21 +21,21 @@ public class EmployeeController {
 
     @GetMapping("/Employee")
     public List<Employee> getAllEmployees(){
-        if(repo.findAll().isEmpty()){
+        if(repository.findAll().isEmpty()){
             throw new EmployeeNotFoundException("No employees found");
         }
-        return repo.findAll();
+        return repository.findAll();
     }
 
     @GetMapping("/Employee/{id}")
     public Employee getEmployee(@PathVariable int id){
-        return repo.findById(id)
+        return repository.findById(id)
                 .orElseThrow(()->new EmployeeNotFoundException("Employee id:"+id+" not found"));
     }
 
     @GetMapping("/Employee/salary/{id}")
     public int getEmployeeSalary(@PathVariable int id){
-        return repo.findById(id).get().getSalary();
+        return repository.findById(id).get().getSalary();
     }
     //  @GetMapping("/Employee/Name/{id}")
     //  public String getEmployeeName(@PathVariable String Name){
@@ -44,20 +44,20 @@ public class EmployeeController {
 
     @PutMapping("/Employee/add")
     public Employee addEmployee(Employee employee){
-        repo.save(employee);
+        repository.save(employee);
         return employee;
     }
 
     @PutMapping("/Employee/update/{id}")
     public Employee updateEmployee(@PathVariable int id) {
 
-        return repo.findByIdUpdate(id);
+        return repository.findByIdUpdate(id);
     }
 
     @DeleteMapping("/Employee/delete/{id}")
     public String deleteEmployee(@PathVariable int id){
-        if (repo.existsById(id)) {
-            repo.deleteById(id);
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
             return "Employee deleted";
         }
         else throw new EmployeeNotFoundException("Employee id:"+id+" not found");
@@ -65,7 +65,7 @@ public class EmployeeController {
 
     @GetMapping("/Employee/sort/{dept}")
     public List<Employee> getEmployees(@PathVariable int dept){
-        return repo.findByDept(dept);
+        return repository.findByDept(dept);
     }
 
 }
