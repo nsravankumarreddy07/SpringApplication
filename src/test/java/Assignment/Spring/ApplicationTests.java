@@ -26,6 +26,14 @@ class ApplicationTests  {
 	private EmployeeService service;
     @MockBean
 	private EmployeeRepository repository;
+
+    @Test
+    public void addEmployeeTest(){
+        Employee e =new Employee(3,"Srijan",40000,3);
+        when(repository.save(e)).thenReturn(e);
+        assertEquals(e,service.addEmployee(e));
+
+    }
     @Test
 	void getAllEmployees() {
         when(repository.findAll()).thenReturn(Stream
@@ -41,7 +49,7 @@ class ApplicationTests  {
 
     @Test
     void getEmployeeSalary() {
-        Employee employee = new Employee();
+        Employee employee = new Employee(3,"Srijan",40000,3);
         when(repository.save(employee)).thenReturn(employee);
         assertEquals(employee, service.addEmployee(employee));
     }
@@ -56,14 +64,14 @@ class ApplicationTests  {
 
     @Test
     void updateEmployee() {
-        Employee employee = new Employee();
+        Employee employee = new Employee(3,"Srijan",40000,3 );
         when(repository.save(employee)).thenReturn(employee);
         assertEquals(employee, service.addEmployee(employee));
     }
 
     @Test
     void deleteEmployee() {
-        Employee employee = new Employee();
+        Employee employee = new Employee(3,"Srijan",40000,3);
 	    service.deleteEmployee(employee);
 		verify(repository, times(1)).delete(employee);
     }
@@ -75,5 +83,10 @@ class ApplicationTests  {
                 .of(new Employee(), new Employee()).collect(Collectors.toList()));
         assertEquals(2, service.getEmployee().size());
     }
-    }
+
+
+
+
+
+}
 

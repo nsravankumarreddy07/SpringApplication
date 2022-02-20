@@ -5,6 +5,7 @@ import Assignment.Spring.Model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -40,4 +41,10 @@ public class EmployeeService {
         return addEmployee();
     }
 
+    public Collection<Object> getAllEmployees() {
+        return getAllEmployees();
+    }
+
+    public void delete(Employee e) {
+    }
 }
