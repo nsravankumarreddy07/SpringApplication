@@ -13,8 +13,7 @@ public class EmployeeController {
 
     @Autowired
     EmployeeRepository repository;
-    @Autowired
-    Employee e;
+
     @Autowired
     EmployeeList employeeList;
 
@@ -37,10 +36,7 @@ public class EmployeeController {
     public int getEmployeeSalary(@PathVariable int id){
         return repository.findById(id).get().getSalary();
     }
-    //  @GetMapping("/Employee/Name/{id}")
-    //  public String getEmployeeName(@PathVariable String Name){
-    //      return repo.findById(Integer.valueOf(Name)).get().getName();
-    // }
+
 
     @PutMapping("/Employee/add")
     public Employee addEmployee(Employee employee){

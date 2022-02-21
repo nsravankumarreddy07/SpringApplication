@@ -12,13 +12,8 @@ import java.util.List;
 @Component
 public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
 
-    //  static List<Employee> findById(long l) {
-    //      return findById(long l);
-    //  }
-    
-
     @Bean
-    @Query("update employee set salary=:salary where id=22")
+    @Query("update employee set salary=:salary where id=2")
     public default Employee findByIdUpdate(int id) {
         return null;
     }

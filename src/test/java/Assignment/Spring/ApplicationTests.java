@@ -37,13 +37,13 @@ class ApplicationTests  {
     @Test
 	void getAllEmployees() {
         when(repository.findAll()).thenReturn(Stream
-                .of(new Employee(), new Employee()).collect(Collectors.toList()));
+                .of(new Employee(3,"Srijan",40000,3), new Employee(4,"Pavan",31000,4)).collect(Collectors.toList()));
         assertEquals(2, service.getEmployee().size());
     }
     @Test
     void getEmployee() {
         when(repository.findByDept("dept"))
-                .thenReturn(Stream.of(new Employee()).collect(Collectors.toList()));
+                .thenReturn(Stream.of(new Employee(3,"Srijan",40000,3)).collect(Collectors.toList()));
                 Assertions.assertEquals(0, service.findByDept().size());
     }
 
@@ -53,14 +53,6 @@ class ApplicationTests  {
         when(repository.save(employee)).thenReturn(employee);
         assertEquals(employee, service.addEmployee(employee));
     }
-
-       // @Test
-        //void addEmployee() {
-        //Employee employee = new Employee();
-       // when(repository.save(employee)).thenReturn(employee);
-       // assertEquals(employee, service.addEmployee());
-   // }
-
 
     @Test
     void updateEmployee() {
@@ -80,13 +72,8 @@ class ApplicationTests  {
     @Test
     void addEmployees() {
         when(repository.findAll()).thenReturn(Stream
-                .of(new Employee(), new Employee()).collect(Collectors.toList()));
+                .of(new Employee(3,"Srijan",40000,3), new Employee(4,"Pavan",31000,4)).collect(Collectors.toList()));
         assertEquals(2, service.getEmployee().size());
     }
-
-
-
-
-
 }
 
