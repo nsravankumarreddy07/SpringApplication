@@ -10,11 +10,11 @@ import java.util.List;
 @Component
 public class EmployeeList {
     @Autowired
-    EmployeeRepository repo;
+    EmployeeRepository repository;
     public static List<Employee> list = new ArrayList<>();
 
     public void ce(){
-        list = repo.saveAll(repo.findAll());
+        list = repository.saveAll(repository.findAll());
 
     }
 }

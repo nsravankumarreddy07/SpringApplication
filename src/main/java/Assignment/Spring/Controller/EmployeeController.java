@@ -17,8 +17,7 @@ public class EmployeeController {
     @Autowired
     EmployeeList employeeList;
 
-
-    @GetMapping("/Employee")
+    @GetMapping("/Sravan")
     public List<Employee> getAllEmployees(){
         if(repository.findAll().isEmpty()){
             throw new EmployeeNotFoundException("No employees found");
@@ -26,31 +25,31 @@ public class EmployeeController {
         return repository.findAll();
     }
 
-    @GetMapping("/Employee/{id}")
+    @GetMapping("/Sravan/{id}")
     public Employee getEmployee(@PathVariable int id){
         return repository.findById(id)
                 .orElseThrow(()->new EmployeeNotFoundException("Employee id:"+id+" not found"));
     }
 
-    @GetMapping("/Employee/salary/{id}")
+    @GetMapping("/Sravan/salary/{id}")
     public int getEmployeeSalary(@PathVariable int id){
         return repository.findById(id).get().getSalary();
     }
 
 
-    @PutMapping("/Employee/add")
+    @PutMapping("/Sravan/add")
     public Employee addEmployee(Employee employee){
         repository.save(employee);
         return employee;
     }
 
-    @PutMapping("/Employee/update/{id}")
+    @PutMapping("/Sravan/update/{id}")
     public Employee updateEmployee(@PathVariable int id) {
 
         return repository.findByIdUpdate(id);
     }
 
-    @DeleteMapping("/Employee/delete/{id}")
+    @DeleteMapping("/Sravan/delete/{id}")
     public String deleteEmployee(@PathVariable int id){
         if (repository.existsById(id)) {
             repository.deleteById(id);
@@ -59,7 +58,7 @@ public class EmployeeController {
         else throw new EmployeeNotFoundException("Employee id:"+id+" not found");
     }
 
-    @GetMapping("/Employee/sort/{dept}")
+    @GetMapping("/Sravan/sort/{dept}")
     public List<Employee> getEmployees(@PathVariable int dept){
         return repository.findByDept(dept);
     }

@@ -21,4 +21,6 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     public List<Employee> findByDept(String dept);
 
     List<Employee> findByDept(int dept);
+
+
 }
