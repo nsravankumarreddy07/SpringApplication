@@ -13,7 +13,7 @@ import java.util.List;
 public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
 
     @Bean
-    @Query("update employee set salary=:salary where id=2")
+    @Query("update employee salary=:salary where id=2")
     public default Employee findByIdUpdate(int id) {
         return null;
     }
